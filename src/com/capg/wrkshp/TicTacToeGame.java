@@ -1,11 +1,13 @@
 package com.capg.wrkshp;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
 	static char[] board = new char[10];
 	static char player = ' ';
 	static char computer = ' ';
+	static char turn = ' ';
 	Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -14,9 +16,14 @@ public class TicTacToeGame {
 		obj.createBoard();
 		obj.chooseLetter();
 		obj.showBoard();
-		obj.moveToLocation();
-		obj.showBoard();
-		obj.moveToLocation();
+		turn = obj.turnToss() == "Head" ? player : computer;
+		int x =0;
+		while(x<10) {
+			obj.moveToLocation();
+			obj.showBoard();
+			x++;
+		}
+		
 	}
 	
 	private void createBoard() {
@@ -59,10 +66,24 @@ public class TicTacToeGame {
 		System.out.println("Enter the index position you want to move");
 		int location = sc.nextInt();
 		if(location >0 && location <10 && board[location] == ' ') {
-			board[location] = player;
+			board[location] = turn;
+			turn = turn == player ? computer : player;
 		} else {
 			System.out.println("Location is occupied or incorrect position entered, Enter the positin again");
-			location = sc.nextInt();
+			//location = sc.nextInt();
+			moveToLocation();
 		}
+	}
+	
+	private String turnToss() {
+		Random random = new Random();
+		int toss = random.nextInt(2);
+		if(toss==1) {
+			System.out.println("Head");
+			return "Head";
+		}
+		else
+			System.out.println("Tail");
+			return "Tail";
 	}
 }
