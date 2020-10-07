@@ -21,9 +21,16 @@ public class TicTacToeGame {
 		while(x<10) {
 			obj.moveToLocation();
 			obj.showBoard();
-			x++;
+			if(obj.gameStatus().equalsIgnoreCase("win")){
+				System.out.println("game won");
+				break;
+			} else if(obj.gameStatus().equalsIgnoreCase("change")) {
+				x++;
+			}else {
+				System.out.println("game tie");
+				break;
+			}
 		}
-		
 	}
 	
 	private void createBoard() {
@@ -65,14 +72,15 @@ public class TicTacToeGame {
 	private void moveToLocation() {
 		System.out.println("Enter the index position you want to move");
 		int location = sc.nextInt();
-		if(location >0 && location <10 && board[location] == ' ') {
-			board[location] = turn;
-			turn = turn == player ? computer : player;
-		} else {
-			System.out.println("Location is occupied or incorrect position entered, Enter the positin again");
-			//location = sc.nextInt();
-			moveToLocation();
-		}
+		
+			if(location >0 && location <10 && board[location] == ' ') {
+				board[location] = turn;
+				turn = turn == player ? computer : player;
+			} else {
+				System.out.println("Location is occupied or incorrect position entered, Enter the positin again");
+				//location = sc.nextInt();
+				moveToLocation();
+			} 
 	}
 	
 	private String turnToss() {
@@ -85,5 +93,23 @@ public class TicTacToeGame {
 		else
 			System.out.println("Tail");
 			return "Tail";
+	}
+	
+	private String gameStatus() {
+		 if(((board[1]==board[2]) && (board[2]==board[3]) && board[1] != ' ') ||
+				 ((board[4]==board[5]) && (board[5]==board[6]) && board[4] != ' ') ||
+				 ((board[7]==board[8]) && (board[8]==board[9]) && board[7] != ' ') ||
+				 ((board[1]==board[4]) && (board[4]==board[7]) && board[1] != ' ') ||
+				 ((board[2]==board[5]) && (board[5]==board[8]) && board[2] != ' ') ||
+				 ((board[3]==board[6]) && (board[6]==board[9]) && board[3] != ' ') ||
+				 ((board[1]==board[5]) && (board[5]==board[9]) && board[1] != ' ') ||
+				 ((board[3]==board[5]) && (board[5]==board[7]) && board[3] != ' ')) {
+			 return "win";
+		 }
+		 else  if(board[1]==' ' || board[2] == ' ' || board[3] == ' ' ||  board[4] == ' ' || board[5] == ' ' || board[6] == ' ' || board[7] == ' ' || board[8] == ' ' || board[9] == ' ')
+			 return "change";
+		 else {
+			 return "tie";
+		 }
 	}
 }
