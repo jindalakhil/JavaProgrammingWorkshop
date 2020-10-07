@@ -14,6 +14,8 @@ public class TicTacToeGame {
 		obj.createBoard();
 		obj.chooseLetter();
 		obj.showBoard();
+		obj.moveToLocation();
+		obj.showBoard();
 	}
 	
 	private void createBoard() {
@@ -44,10 +46,19 @@ public class TicTacToeGame {
 	
 	private void showBoard() {
 		for(int i=1; i<board.length;i++) {
-			System.out.print(board[i] + " ");
+			System.out.print("|" + board[i] + "|");
 			if(i%3 ==0) {
 				System.out.println();
+				System.out.println("------------");
 			}
+		}
+	}
+	
+	private void moveToLocation() {
+		System.out.println("Enter the index position you want to move");
+		int location = sc.nextInt();
+		if(board[location] == ' ') {
+			board[location] = player;
 		}
 	}
 }
