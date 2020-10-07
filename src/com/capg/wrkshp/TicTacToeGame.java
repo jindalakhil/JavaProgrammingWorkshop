@@ -13,6 +13,7 @@ public class TicTacToeGame {
 		TicTacToeGame obj = new TicTacToeGame();
 		obj.createBoard();
 		obj.chooseLetter();
+		obj.showBoard();
 	}
 	
 	private void createBoard() {
@@ -39,6 +40,14 @@ public class TicTacToeGame {
 		default :
 			System.out.println("Entered Wrong imput, Please enter the letter from 'x' and 'o' only.");
 		}
-		
+	}
+	
+	private void showBoard() {
+		for(int i=1; i<board.length;i++) {
+			System.out.print(board[i] + " ");
+			if(i%3 ==0) {
+				System.out.println();
+			}
+		}
 	}
 }
