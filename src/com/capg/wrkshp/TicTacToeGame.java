@@ -25,22 +25,25 @@ public class TicTacToeGame {
 				if (obj.gameStatus().equalsIgnoreCase("win")) {
 					System.out.println("game won");
 					System.out.println("Do You Want To Play Again : Press y/otherKey");
-					if(obj.sc.next().charAt(0) == 'y')
-						System.out.println("Thank you");
+					if (obj.sc.next().charAt(0) == 'y')
 						playAgain = true;
-					else
+					else {
+						System.out.println("Thank you");
 						playAgain = false;
+					}
+
 					break;
 				} else if (obj.gameStatus().equalsIgnoreCase("change")) {
 					continue;
 				} else {
 					System.out.println("game tie");
 					System.out.println("Do You Want To Play Again : Press y/otherKey");
-					if(obj.sc.next().charAt(0) == 'y')
+					if (obj.sc.next().charAt(0) == 'y')
 						playAgain = true;
-					else
+					else {
 						System.out.println("Thank you");
 						playAgain = false;
+					}
 					break;
 				}
 			}
