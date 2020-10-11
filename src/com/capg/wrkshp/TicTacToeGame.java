@@ -168,7 +168,15 @@ public class TicTacToeGame {
 			}
 		}
 		if (count != 0) {
-			board[count] = turn;
+			takeCenter(count);
+		}
+	}
+
+	private void takeCenter(int position) {
+		if (board[5] == ' ') {
+			board[5] = turn;
+		} else {
+			board[position] = turn;
 		}
 	}
 }
