@@ -17,15 +17,14 @@ public class TicTacToeGame {
 		obj.chooseLetter();
 		obj.showBoard();
 		turn = obj.turnToss() == "Head" ? player : computer;
-		int x = 0;
-		while (x < 10) {
+		while (true) {
 			obj.moveToLocation();
 			obj.showBoard();
 			if (obj.gameStatus().equalsIgnoreCase("win")) {
 				System.out.println("game won");
 				break;
 			} else if (obj.gameStatus().equalsIgnoreCase("change")) {
-				x++;
+				continue;
 			} else {
 				System.out.println("game tie");
 				break;
