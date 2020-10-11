@@ -143,9 +143,26 @@ public class TicTacToeGame {
 				board[i] = player;
 				if (gameStatus().equals("win")) {
 					board[i] = turn;
+					count = 1;
 					return;
 				} else {
 					board[i] = ' ';
+				}
+			}
+		}
+		if (count == 0) {
+			takeCorner();
+		}
+	}
+
+	private void takeCorner() {
+		int count = 0;
+		for (int i = 1; i < 10; i++) {
+			if (board[i] == ' ') {
+				if (i == 1 || i == 3 || i == 7 || i == 9) {
+					board[i] = turn;
+					return;
+				} else {
 					count = i;
 				}
 			}
