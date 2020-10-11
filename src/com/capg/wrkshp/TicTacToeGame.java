@@ -12,22 +12,37 @@ public class TicTacToeGame {
 
 	public static void main(String[] args) {
 		System.out.println("welcome to tic tac toe game");
-		TicTacToeGame obj = new TicTacToeGame();
-		obj.createBoard();
-		obj.chooseLetter();
-		obj.showBoard();
-		turn = obj.turnToss() == "Head" ? player : computer;
-		while (true) {
-			obj.moveToLocation();
+		boolean playAgain = true;
+		while (playAgain) {
+			TicTacToeGame obj = new TicTacToeGame();
+			obj.createBoard();
+			obj.chooseLetter();
 			obj.showBoard();
-			if (obj.gameStatus().equalsIgnoreCase("win")) {
-				System.out.println("game won");
-				break;
-			} else if (obj.gameStatus().equalsIgnoreCase("change")) {
-				continue;
-			} else {
-				System.out.println("game tie");
-				break;
+			turn = obj.turnToss() == "Head" ? player : computer;
+			while (true) {
+				obj.moveToLocation();
+				obj.showBoard();
+				if (obj.gameStatus().equalsIgnoreCase("win")) {
+					System.out.println("game won");
+					System.out.println("Do You Want To Play Again : Press y/otherKey");
+					if(obj.sc.next().charAt(0) == 'y')
+						System.out.println("Thank you");
+						playAgain = true;
+					else
+						playAgain = false;
+					break;
+				} else if (obj.gameStatus().equalsIgnoreCase("change")) {
+					continue;
+				} else {
+					System.out.println("game tie");
+					System.out.println("Do You Want To Play Again : Press y/otherKey");
+					if(obj.sc.next().charAt(0) == 'y')
+						playAgain = true;
+					else
+						System.out.println("Thank you");
+						playAgain = false;
+					break;
+				}
 			}
 		}
 	}
