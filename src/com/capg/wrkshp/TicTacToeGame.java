@@ -123,7 +123,26 @@ public class TicTacToeGame {
 		for (int i = 1; i < 10; i++) {
 			if (board[i] == ' ') {
 				board[i] = turn;
-				if(gameStatus().equals("win")) {
+				if (gameStatus().equals("win")) {
+					count = 1;
+					return;
+				} else {
+					board[i] = ' ';
+				}
+			}
+		}
+		if (count == 0) {
+			blockPlayerToWin();
+		}
+	}
+
+	private void blockPlayerToWin() {
+		int count = 0;
+		for (int i = 1; i < 10; i++) {
+			if (board[i] == ' ') {
+				board[i] = player;
+				if (gameStatus().equals("win")) {
+					board[i] = turn;
 					return;
 				} else {
 					board[i] = ' ';
@@ -131,7 +150,7 @@ public class TicTacToeGame {
 				}
 			}
 		}
-		if(count!=0) {
+		if (count != 0) {
 			board[count] = turn;
 		}
 	}
